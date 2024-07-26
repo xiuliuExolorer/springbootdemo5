@@ -9,6 +9,7 @@ public class Test10 {
 
         System.out.println("我在master上增加了一行内容");
         System.out.println("我在master上增加了一行内容2");
+        System.out.println("我在master上增加了一行内容2");
 
         System.out.println("测试merge 我在master上增加了一行内容3");
 
