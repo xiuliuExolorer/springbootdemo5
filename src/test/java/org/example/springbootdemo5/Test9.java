@@ -10,5 +10,6 @@ public class Test9 {
         System.out.println("测试merge 我在add分支上增加了一行内容5");
 
         System.out.println("ad分支 测试1");
+        System.out.println("ad分支 测试2");
     }
 }
