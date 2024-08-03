@@ -7,4 +7,8 @@ public class Test implements DisposableBean {
     public void destroy() throws Exception {
 
     }
+
+    public static void main(String[] args) {
+
+    }
 }

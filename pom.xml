@@ -13,6 +13,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <spring-boot.version>2.6.13</spring-boot.version>
         <rocket-starter>2.2.1</rocket-starter>
+        <rocket-java>5.0.7</rocket-java>
     </properties>
     <dependencies>
         <dependency>
@@ -31,6 +32,14 @@
             <artifactId>rocketmq-spring-boot-starter</artifactId>
             <version>${rocket-starter}</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.rocketmq/rocketmq-client-java -->
+        <dependency>
+            <groupId>org.apache.rocketmq</groupId>
+            <artifactId>rocketmq-client-java</artifactId>
+            <version>${rocket-java}</version>
+        </dependency>
+
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
