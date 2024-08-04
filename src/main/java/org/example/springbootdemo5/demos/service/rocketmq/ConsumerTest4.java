@@ -8,15 +8,15 @@ import org.apache.rocketmq.client.exception.MQClientException;
 import org.apache.rocketmq.common.protocol.heartbeat.MessageModel;
 
 
-public class ConsumerTest1 {
+public class ConsumerTest4 {
 
 
     public static void main(String[] args) throws MQClientException {
 
-        DefaultMQPushConsumer defaultMQPushConsumer = new DefaultMQPushConsumer("consumerGroup5");
-        defaultMQPushConsumer.setMessageModel(MessageModel.BROADCASTING);
+        DefaultMQPushConsumer defaultMQPushConsumer = new DefaultMQPushConsumer("consumerGroup4");
+        defaultMQPushConsumer.setMessageModel(MessageModel.CLUSTERING);
         defaultMQPushConsumer.setNamesrvAddr("localhost:9876");
-        defaultMQPushConsumer.subscribe("mingTopic5", "*");
+        defaultMQPushConsumer.subscribe("mingTopic4", "*");
         defaultMQPushConsumer.registerMessageListener((MessageListenerConcurrently) (msgs, context) -> {
             msgs.forEach((t)-> System.out.println("consumer1 收到消息："+new String(t.getBody())));
             return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;

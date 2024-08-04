@@ -13,10 +13,10 @@ public class ConsumerTest3 {
 
     public static void main(String[] args) throws MQClientException {
 
-        DefaultMQPushConsumer defaultMQPushConsumer = new DefaultMQPushConsumer("consumerGroup");
+        DefaultMQPushConsumer defaultMQPushConsumer = new DefaultMQPushConsumer("consumerGroup5");
                 defaultMQPushConsumer.setMessageModel(MessageModel.BROADCASTING);
         defaultMQPushConsumer.setNamesrvAddr("localhost:9876");
-        defaultMQPushConsumer.subscribe("mingTopic", "*");
+        defaultMQPushConsumer.subscribe("mingTopic5", "*");
         defaultMQPushConsumer.registerMessageListener((MessageListenerConcurrently) (msgs, context) -> {
             msgs.forEach((t)-> System.out.println("consumer3 收到消息："+new String(t.getBody())));
             return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
