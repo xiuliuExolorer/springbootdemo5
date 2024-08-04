@@ -19,7 +19,7 @@ public class MqProducerTest1 {
         producerGroup.setMaxMessageSize(409600);
         producerGroup.setRetryTimesWhenSendFailed(3);
         producerGroup.start();
-        Message message = new Message("mingTopic", "TagA", (System.currentTimeMillis()+"苹果手机大降价了").getBytes(RemotingHelper.DEFAULT_CHARSET));
+        Message message = new Message("mingTopic5", "TagA", (System.currentTimeMillis()+"苹果手机大降价了").getBytes(RemotingHelper.DEFAULT_CHARSET));
         producerGroup.send(message);
         System.out.println("producer send msg ： "+new String(message.getBody()));
     }
