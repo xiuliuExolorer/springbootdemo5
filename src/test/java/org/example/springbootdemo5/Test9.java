@@ -19,6 +19,7 @@ public class Test9 {
 
 //        Executors.newScheduledThreadPool()
         System.out.println("44");
+        System.out.println("55");
         ScheduledThreadPoolExecutor scheduledThreadPoolExecutor = new ScheduledThreadPoolExecutor(1);
         scheduledThreadPoolExecutor.scheduleAtFixedRate(()-> System.out.println("1"),0,1000, TimeUnit.MILLISECONDS);
 
