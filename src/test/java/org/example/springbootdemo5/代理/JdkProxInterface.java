@@ -1,4 +1,4 @@
-package org.example.springbootdemo5.proxy;
+package org.example.springbootdemo5.代理;
 
 public interface JdkProxInterface {
     void method();

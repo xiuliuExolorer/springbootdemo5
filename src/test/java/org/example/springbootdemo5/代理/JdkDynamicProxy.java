@@ -1,4 +1,4 @@
-package org.example.springbootdemo5.proxy;
+package org.example.springbootdemo5.代理;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;

@@ -1,7 +1,5 @@
 package org.example.springbootdemo5;
 
-import org.junit.jupiter.api.Test;
-
 public interface InterFace1 {
 
     String a = "";
@@ -12,9 +10,12 @@ public interface InterFace1 {
          return 1;
     }
 
+
     default void method1(){
         System.out.println("我是接口的默认方法");
     }
 
-     abstract void method2();
+    void method2();
+
+     void methodInter1();
 }

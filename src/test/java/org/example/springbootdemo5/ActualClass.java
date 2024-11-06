@@ -12,6 +12,11 @@ public class ActualClass implements InterFace1{
 
     }
 
+    @Override
+    public void methodInter1() {
+
+    }
+
     public void test1(){
         method1();
     }

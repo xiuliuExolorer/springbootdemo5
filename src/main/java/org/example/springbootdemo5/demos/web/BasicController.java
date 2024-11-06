@@ -16,23 +16,63 @@
 
 package org.example.springbootdemo5.demos.web;
 
+import com.hou.demostarter2.HouConfig;
+import lombok.extern.slf4j.Slf4j;
+import org.example.springbootdemo5.demos.mapper.StudentMapper;
+import org.example.springbootdemo5.demos.service.config.Bean5;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * @author <a href="mailto:chenxilzx1@gmail.com">theonefx</a>
  */
+@Slf4j
 @Controller
 public class BasicController {
 
+    @Autowired
+    private Bean5 get22;
+
+    @Autowired
+    private HouConfig houConfig;
+
+    @Resource
+    private StudentMapper studentMapper;
+    @RequestMapping("/bean2")
+    @ResponseBody
+    public String bean2() {
+
+        get22.method1();
+//        return bean2.getA();
+        return null;
+    }
+
+    private ConcurrentHashMap map = new ConcurrentHashMap<Long,Integer>();
+
     // http://127.0.0.1:8080/hello?name=lisi
-    @RequestMapping("/hello")
+    @GetMapping("/hello")
     @ResponseBody
     public String hello(@RequestParam(name = "name", defaultValue = "unknown user") String name) {
-        return "Hello " + name;
+        System.out.println("hello方法被访问");
+        long id = Thread.currentThread().getId();
+        ExecutorService executorService = Executors.newFixedThreadPool(10);
+        executorService.execute(()->doSomething(id));
+        ReentrantLock reentrantLock = new ReentrantLock();
+        reentrantLock.lock();
+        return map.get(id).toString();
+    }
+
+    void doSomething(Long threadId){
+        log.info("线程：{}在做事情",threadId);
+        map.put(threadId,threadId);
+        System.out.println("线程：做事情");
     }
 
     // http://127.0.0.1:8080/user
@@ -64,4 +104,6 @@ public class BasicController {
         user.setName("zhangsan");
         user.setAge(18);
     }
+
+
 }

@@ -1,9 +1,6 @@
 package org.example.springbootdemo5;
 
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledThreadPoolExecutor;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
+import java.util.HashMap;
 
 public class Test9 {
     public static void main(String[] args) {
@@ -18,8 +15,11 @@ public class Test9 {
 //        System.out.println("ad分支 测试2");
 
 //        Executors.newScheduledThreadPool()
-        ScheduledThreadPoolExecutor scheduledThreadPoolExecutor = new ScheduledThreadPoolExecutor(1);
-        scheduledThreadPoolExecutor.scheduleAtFixedRate(()-> System.out.println("1"),0,1000, TimeUnit.MILLISECONDS);
+//        ScheduledThreadPoolExecutor scheduledThreadPoolExecutor = new ScheduledThreadPoolExecutor(1);
+//        scheduledThreadPoolExecutor.scheduleAtFixedRate(()-> System.out.println("1"),0,1000, TimeUnit.MILLISECONDS);
+        HashMap<Object, Object> map = new HashMap<>();
+        map.put(1,1);
+        System.out.println(map.size());
 
     }
 }

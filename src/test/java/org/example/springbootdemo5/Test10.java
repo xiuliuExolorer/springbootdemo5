@@ -3,12 +3,9 @@ package org.example.springbootdemo5;
 
 import org.junit.jupiter.api.Test;
 
-import java.lang.ref.PhantomReference;
-import java.lang.ref.ReferenceQueue;
 import java.lang.ref.WeakReference;
-import java.math.BigDecimal;
 import java.util.HashMap;
-import java.util.WeakHashMap;
+import java.util.PriorityQueue;
 import java.util.concurrent.*;
 import java.util.function.Supplier;
 
@@ -127,6 +124,11 @@ public class Test10 {
 
     }
 
+    @Test
+    void test2(){
+        HashMap<String, Integer> map1 = new HashMap<>();
+        map1.put("hou",1);
+    }
     static private ThreadLocal threadLocal2 = new ThreadLocal();
 
 
@@ -142,4 +144,83 @@ public class Test10 {
         }
     }
 
+    void test11(){
+        HashMap<Object, Object> objectObjectHashMap = new HashMap<>();
+        objectObjectHashMap.put(1,1);
+    }
+
+    private int a = 0;
+
+    @Test
+    public void test12() throws InterruptedException {
+        ExecutorService executorService = Executors.newFixedThreadPool(10);
+        for (int i = 0; i < 10000; i++) {
+            executorService.execute(this::addA);
+        }
+        executorService.shutdown();
+        if(executorService.awaitTermination(100,TimeUnit.SECONDS)){
+            executorService.shutdownNow();
+        }
+        if(executorService.isTerminated()){
+            System.out.println(a);
+        }
+    }
+
+    void addA(){
+        a++;
+    }
+
+    @Test
+    void test13(){
+        ThreadLocal<Object> threadLocal1 = new ThreadLocal<>();
+        threadLocal1.set("aaa");
+        new Thread(() -> System.out.println(threadLocal1.get())).start();
+    }
+
+    @Test
+    void test14(){
+        String string = "applebc";
+        String[] strings = {"apple", "b", "c"};
+        System.out.println(contains(string, strings));
+    }
+
+    boolean contains(String str,String[] strings){
+        if(str==null|| str.isEmpty()){
+            return true;
+        }
+        for (String string : strings) {
+            if (str.length() < string.length()) {
+                continue;
+            }
+            String newStr = str.substring(0, string.length());
+            if (string.equals(newStr)) {
+                String remainStr = str.substring(string.length());
+                if (contains(remainStr, strings)) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+    @Test
+    void test15(){
+        int a =10;
+        Integer b = 10;
+        System.out.println(b==a);
+    }
+
+    @Test
+    void test16(){
+        PriorityQueue<Object> objects = new PriorityQueue<>();
+        objects.add(1);
+        objects.add(4);
+        objects.add(2);
+        objects.poll();
+
+        for (Object object : objects) {
+            System.out.println(object);
+        }
+
+    }
 }
