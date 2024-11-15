@@ -1,9 +1,9 @@
 package org.example.springbootdemo5.demos.service.forkjoin;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ForkJoinPool;
-import java.util.concurrent.RecursiveTask;
+import org.junit.Test;
+
+import java.util.HashMap;
+import java.util.concurrent.*;
 
 class SumTask extends RecursiveTask<Long> {
     private static final int THRESHOLD = 1000; // 阈值
@@ -57,5 +57,20 @@ public class ForkJoinExample {
         int a   =10& ~1;
 
 //        new PriorityQueue<>()
+
+    }
+
+    @Test
+    public void test1() throws InterruptedException {
+        Semaphore semaphore = new Semaphore(10);
+//
+//        semaphore.release();
+//        semaphore.acquire();
+//
+//        ReentrantLock reentrantLock = new ReentrantLock();
+//        reentrantLock.lock();
+//        reentrantLock.unlock();
+        HashMap<Object, Object> objectObjectHashMap = new HashMap<>();
+        objectObjectHashMap.put(null,null);
     }
 }
