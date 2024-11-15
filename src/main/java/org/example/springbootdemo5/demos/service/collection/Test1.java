@@ -7,5 +7,6 @@ public class Test1
     public static void main(String[] args) {
         PriorityQueue<Object> objects = new PriorityQueue<>();
         System.out.println(" master 提交了3333333");
+        System.out.println(" master 提交了4444444");
     }
 }
