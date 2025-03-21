@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>坦克大战</title>
+    <style>
+        canvas { background: #eee; display: block; margin: 0 auto; }
+    </style>
+</head>
+<body>
+<canvas id="gameCanvas" width="800" height="600"></canvas>
+<audio autoplay loop>
+    <source src="path/to/your/background-music.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+<script>
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+
+    // 游戏对象
+    class Tank {
+        constructor(x, y, color) {
+            this.x = x;
+            this.y = y;
+            this.color = color;
+            this.width = 30;
+            this.height = 30;
+        }
+
+        draw() {
+            ctx.fillStyle = this.color;
+            ctx.fillRect(this.x, this.y, this.width, this.height);
+        }
+
+        move(dir) {
+            switch (dir) {
+                case 'up': this.y -= 5; break;
+                case 'down': this.y += 5; break;
+                case 'left': this.x -= 5; break;
+                case 'right': this.x += 5; break;
+            }
+        }
+    }
+
+    class Bullet {
+        constructor(x, y, direction) {
+            this.x = x;
+            this.y = y;
+            this.direction = direction;
+            this.speed = 10;
+        }
+
+        update() {
+            switch (this.direction) {
+                case 'up': this.y -= this.speed; break;
+                case 'down': this.y += this.speed; break;
+                case 'left': this.x -= this.speed; break;
+                case 'right': this.x += this.speed; break;
+            }
+        }
+
+        draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, 5, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+
+    let playerTank = new Tank(100, 100, "blue");
+    let enemyTank = new Tank(400, 400, "red");
+    let bullets = [];
+    let princessRescued = false;
+
+    function gameLoop() {
+        update();
+        render();
+        requestAnimationFrame(gameLoop);
+    }
+
+    function update() {
+        if (!princessRescued && Math.hypot(playerTank.x - enemyTank.x, playerTank.y - enemyTank.y) < 50) {
+            princessRescued = true;
+            alert("公主被营救，你赢了！");
+        }
+        bullets.forEach(bullet => bullet.update());
+    }
+
+    function render() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        playerTank.draw();
+        enemyTank.draw();
+        bullets.forEach(bullet => bullet.draw());
+    }
+
+    window.addEventListener('keydown', e => {
+        switch(e.key) {
+            case 'ArrowUp': case 'w': playerTank.move('up'); break;
+            case 'ArrowDown': case 's': playerTank.move('down'); break;
+            case 'ArrowLeft': case 'a': playerTank.move('left'); break;
+            case 'ArrowRight': case 'd': playerTank.move('right'); break;
+            case ' ': // Space for shooting
+                bullets.push(new Bullet(playerTank.x + playerTank.width / 2, playerTank.y + playerTank.height / 2, 'up'));
+                break;
+        }
+    });
+
+    gameLoop();
+</script>
+</body>
+</html>

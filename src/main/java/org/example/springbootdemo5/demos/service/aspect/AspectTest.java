@@ -15,13 +15,13 @@ public class AspectTest {
     @Around("execution(* org.example.springbootdemo5.demos.service.aspect.AspectTest.test1(..))")
     public Object excute(ProceedingJoinPoint joinPoint) throws Throwable {
         System.out.println("增强hello方法");
-        return joinPoint.proceed();
+        String a = "11";
+             return joinPoint.proceed();
     }
 
 
-
     @Test
-    public void test1(){
+    public void test1() {
         System.out.println("我是test1");
     }
 

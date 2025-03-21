@@ -32,7 +32,7 @@ public class Class1 <T extends Enum<T>>{
         return  "a";
     }
     public void method1(){
-
+//        new Demo().test11();
     }
 
 }

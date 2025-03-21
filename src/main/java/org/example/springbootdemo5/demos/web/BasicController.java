@@ -79,6 +79,7 @@ public class BasicController {
     @RequestMapping("/user")
     @ResponseBody
     public User user() {
+        System.out.println("来到controller了");
         User user = new User();
         user.setName("theonefx");
         user.setAge(666);
@@ -103,6 +104,7 @@ public class BasicController {
             , @RequestParam(name = "age", defaultValue = "12") Integer age, User user) {
         user.setName("zhangsan");
         user.setAge(18);
+
     }
 
 

@@ -203,6 +203,7 @@ public class Class1 {
         CountDownLatch countDownLatch = new CountDownLatch(2);
         countDownLatch.countDown();
         countDownLatch.await();
+        new Demo().test10();
     }
 
 }
