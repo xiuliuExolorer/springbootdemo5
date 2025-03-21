@@ -56,6 +56,8 @@ public class ForkJoinExample {
             return;
         }
         System.out.println("first commit");
+        System.out.println("second commit");
+
 
 //        new BigDecimal()
 
